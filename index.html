@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mariposas mágicas — Interacción con las manos</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.4/lib/p5.min.js"></script>
+</head>
+
+<body>
+  <main id="stage"></main>
+
+  <div id="frame" aria-hidden="true">
+    <i></i><i></i><i></i><i></i>
+  </div>
+
+  <div id="telemetry">
+    <span id="telemetry-hands">MANOS 0</span>
+    <span class="sep">/</span>
+    <span id="telemetry-fps">60 FPS</span>
+    <span class="sep">/</span>
+    <span id="telemetry-state">EN ESPERA</span>
+  </div>
+
+  <button id="mute" type="button" title="Silenciar (M)">🔊</button>
+
+  <div id="sound-hint">SONIDO · CLIC PARA ACTIVAR</div>
+
+  <aside id="guide">
+    <ul>
+      <li>Mano abierta: nacen 5 mariposas por mano</li>
+      <li>Mueve la mano: vuelan contigo</li>
+      <li>Índice levantado: una se posa y te sigue</li>
+      <li>Puño: se desintegran</li>
+      <li>Dos manos juntas: remolino</li>
+    </ul>
+  </aside>
+
+  <div id="hud">
+    <div class="panel">
+      <h1>Mariposas mágicas</h1>
+      <p id="hud-status">Activando cámara…</p>
+      <button id="retry" class="hidden" type="button">Reintentar</button>
+    </div>
+  </div>
+
+  <script src="js/particles.js"></script>
+  <script src="js/butterfly.js"></script>
+  <script src="js/gestures.js"></script>
+  <script src="js/hands.js"></script>
+  <script src="js/scene.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>

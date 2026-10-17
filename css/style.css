@@ -1,0 +1,263 @@
+:root {
+  --bg: #0b0714;
+  --text: #fff6e5;
+  --lila: #c8a2ff;
+  --rosa: #ff9ecf;
+  --azul: #7fd8ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+#stage {
+  position: fixed;
+  inset: 0;
+}
+
+#stage canvas {
+  display: block;
+}
+
+#hud {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 50% 40%, rgba(140, 90, 200, 0.28), rgba(11, 7, 20, 0.88));
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: opacity 0.6s ease;
+}
+
+#hud.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.panel {
+  max-width: 520px;
+  padding: 28px 34px;
+  text-align: center;
+}
+
+.panel h1 {
+  margin: 0 0 12px;
+  font-size: 30px;
+  letter-spacing: 0.5px;
+  background: linear-gradient(90deg, var(--lila), var(--rosa), var(--azul));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+#hud-status {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255, 246, 229, 0.85);
+}
+
+#hud-status.error {
+  color: #ff8fa3;
+}
+
+#retry {
+  margin-top: 20px;
+  padding: 11px 26px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--lila), var(--rosa));
+  color: #170d24;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+#retry:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+#retry.hidden {
+  display: none;
+}
+
+#guide {
+  position: fixed;
+  left: 24px;
+  bottom: 24px;
+  z-index: 5;
+  padding: 14px 20px 14px 6px;
+  border: 1px solid rgba(200, 162, 255, 0.24);
+  border-radius: 16px;
+  background: rgba(11, 7, 20, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  pointer-events: none;
+  transition: opacity 1.2s ease;
+}
+
+#guide.faded {
+  opacity: 0;
+}
+
+#guide ul {
+  margin: 0;
+  padding-left: 26px;
+  font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  font-size: 11.5px;
+  line-height: 1.8;
+  letter-spacing: 0.04em;
+  color: rgba(255, 246, 229, 0.78);
+  list-style: disc;
+}
+
+#guide li::marker {
+  color: var(--rosa);
+}
+
+@media (max-width: 640px) {
+  #guide {
+    display: none;
+  }
+}
+
+/* ---- HUD futurista ---- */
+
+#frame {
+  position: fixed;
+  inset: 14px;
+  z-index: 4;
+  pointer-events: none;
+}
+
+#frame i {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(96, 224, 255, 0.5);
+}
+
+#frame i:nth-child(1) {
+  top: 0;
+  left: 0;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+#frame i:nth-child(2) {
+  top: 0;
+  right: 0;
+  border-left: 0;
+  border-bottom: 0;
+}
+
+#frame i:nth-child(3) {
+  bottom: 0;
+  left: 0;
+  border-right: 0;
+  border-top: 0;
+}
+
+#frame i:nth-child(4) {
+  bottom: 0;
+  right: 0;
+  border-left: 0;
+  border-top: 0;
+}
+
+#telemetry {
+  position: fixed;
+  top: 26px;
+  left: 36px;
+  z-index: 6;
+  display: flex;
+  gap: 10px;
+  font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: rgba(150, 235, 255, 0.85);
+  text-shadow: 0 0 14px rgba(96, 224, 255, 0.45);
+  pointer-events: none;
+}
+
+#telemetry .sep {
+  color: rgba(186, 140, 255, 0.5);
+}
+
+#mute {
+  position: fixed;
+  top: 20px;
+  right: 36px;
+  z-index: 7;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(96, 224, 255, 0.35);
+  border-radius: 12px;
+  background: rgba(11, 7, 20, 0.55);
+  color: #dff8ff;
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: border-color 0.2s ease, opacity 0.2s ease;
+}
+
+#mute:hover {
+  border-color: rgba(96, 224, 255, 0.85);
+}
+
+#mute.muted {
+  opacity: 0.5;
+}
+
+#sound-hint {
+  position: fixed;
+  right: 36px;
+  bottom: 28px;
+  z-index: 6;
+  padding: 9px 16px;
+  border: 1px solid rgba(255, 120, 214, 0.35);
+  border-radius: 999px;
+  background: rgba(11, 7, 20, 0.5);
+  font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: rgba(255, 246, 229, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: sound-pulse 2.6s ease-in-out infinite;
+  transition: opacity 0.6s ease;
+}
+
+#sound-hint.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes sound-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
